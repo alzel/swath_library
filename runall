@@ -1,0 +1,22 @@
+#mgf2mzxml.sh
+generate_tandem_inputs.sh
+tandem.sh
+comet.sh
+tandem2pepxml.sh
+xinteract.sh
+#xinteract_single.sh
+
+interprophet.sh
+#interprophet_single.sh
+
+spectrast.sh
+#spectrast1_single.sh
+#
+./spectrast_consensus.sh
+./spectrast2tsv.sh 
+
+#correct irt manually if failed during openswath
+cp spectrast_results/iprophet_cons_openswath.csv ./final_libraries/openswathlib_uniprot-mouse_cont_iRT_with_reverse.csv
+
+../../src/proteomics_tools/correct_irt.R ./assay/iRT_microSWATH.txt ./spectrast_results/iprophet_cons_openswath.csv ./final_libraries
+
