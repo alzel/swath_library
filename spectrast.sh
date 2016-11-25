@@ -3,7 +3,7 @@
 data="./data.raw"
 target="iprophet.pep.xml"
 assay="./assay"
-database="uniprot-mouse_cont_iRT_with_reverse.fasta"
+database="yeast.fasta"
 results="./spectrast_results"
 logs="./logs"
 output=${0##*/}

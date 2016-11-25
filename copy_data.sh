@@ -1,8 +1,8 @@
-data='../../data/2016-01-14'
+data='./data.raw_all'
 results="./data.raw"
 logs="./logs"
 bin="/g/software/bin"
-pattern=".*mgf\|.*mzXML\|.*mzML"
+pattern="filtered"
 output=${0##*/}
 
 if [ -d "$results" ]; then

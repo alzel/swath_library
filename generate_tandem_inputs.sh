@@ -8,7 +8,7 @@ results="./tandem_input"
 bin="/g/software/bin"
 pattern="mzXML"
 assay="./assay"
-taxon="mouse"
+taxon="yeast"
 
 if [ -d "$results" ]; then
         rm -ifr $results/*
