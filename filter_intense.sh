@@ -1,6 +1,6 @@
 #!/bin/bash
 bin="/g/software/bin"
-data="./data.raw" 
+data="./data.raw_all" 
 #results="./search_files"
 results=$data
 output=${0##*/}
@@ -33,6 +33,6 @@ mkdir -p $logs
 for dataset in `find $data/* -type f | grep $pattern`
 do  
     file=`basename $dataset .$pattern`
-    bsub  -M 8000 -R"select[(mem > 10000 )&&ncpus>=2]" -o $logs/$output.log $bin/msconvert --mzXML $dataset --filter "threshold count 100 most-intense"  -o $results --outfile ${file}_filtered.mzXML
+    bsub  -M 8000 -R"select[(mem > 10000 )&&ncpus>=2]" -o $logs/$output.log $bin/msconvert --mzXML $dataset --filter "threshold count 1000 most-intense"  -o $results --outfile ${file}_filtered.mzXML
 done
 
