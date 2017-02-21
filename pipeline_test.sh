@@ -25,17 +25,17 @@ wait_job2=`bsub -J "comet[1-$fLen]%30" < ./comet_array.sh | sed 's/[^0-9]*//g'`
 
 
 #tandem2pepxml
-wait_job3=`bsub -J "comet[1-$fLen]%30" < ./tandem2pepxml.sh | sed 's/[^0-9]*//g'`
+wait_job3=`bsub -J "tandem2pepxml[1-$fLen]%30" -w "ended($wait_job1)" < ./tandem2pepxml.sh | sed 's/[^0-9]*//g'`
 
 #run PeptideProphet
-wait_job4=`bsub -J xinteract -w "ended($wait_job1)&&ended($wait_job2)&&ended($wait_job3)" < ./xinteract.sh | sed 's/[^0-9]*//g'`
+wait_job4=`bsub -J "xinteract" -w "ended($wait_job1)&&ended($wait_job2)&&ended($wait_job3)" < ./xinteract.sh | sed 's/[^0-9]*//g'`
 echo "Job PeptidePropthet, $wait_job4 has been submitted"
 
 #iprophet
-wait_job5=`bsub -J interprophet -w "ended($wait_job4)" < ./interprophet.sh | sed 's/[^0-9]*//g'`
+wait_job5=`bsub -J "interprophet" -w "ended($wait_job4)" < ./interprophet.sh | sed 's/[^0-9]*//g'`
 echo "Job iProphet, $wait_job5 has been submitted"
 
 #mayu and spectrast with certain ipropet probabylity for given fdr(default: 0,01)
-wait_job6=`bsub -J spectrast -w "ended($wait_job5)" < ./spectrast.sh | sed 's/[^0-9]*//g'`
+wait_job6=`bsub -J "spectrast" -w "ended($wait_job5)" < ./spectrast.sh | sed 's/[^0-9]*//g'`
 echo "Jobs Mayu and spectrast, $wait_job6 has been submitted"
 
