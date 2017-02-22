@@ -4,7 +4,9 @@
 #BSUB -o ./logs/comet_array.%I
 #BSUB -e ./logs/comet_array.%I
 #BSUB -R "select[(mem > 10000)]&&ncpus>=8]"
-
+#BSUB -R "rusage[mem=8000]"
+#BSUB -M 8000
+#BSUB -n 8
 
 data_dir='./data.raw'
 param_file="./assay/comet.params"
