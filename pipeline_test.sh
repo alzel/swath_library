@@ -25,10 +25,10 @@ wait_job2=`bsub -J "comet[1-$fLen]%30" < ./comet_array.sh | sed 's/[^0-9]*//g'`
 
 
 #tandem2pepxml
-#wait_job3=`bsub -J "tandem2pepxml[1-$fLen]%30" -w "ended($wait_job1)" < ./tandem2pepxml.sh | sed 's/[^0-9]*//g'`
+wait_job3=`bsub -J "tandem2pepxml[1-$fLen]%30" -w "$to_wait" < ./tandem2pepxml.sh | sed 's/[^0-9]*//g'`
 
 #run PeptideProphet
-wait_job4=`bsub -J "xinteract" -w "$to_wait&&ended($wait_job2)" < ./xinteract.sh | sed 's/[^0-9]*//g'`
+wait_job4=`bsub -J "xinteract" -w "ended($wait_job3)&&ended($wait_job2)" < ./xinteract.sh | sed 's/[^0-9]*//g'`
 echo "Job PeptidePropthet, $wait_job4 has been submitted"
 
 #iprophet
