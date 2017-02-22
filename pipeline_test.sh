@@ -23,7 +23,6 @@ fLen=${#files[*]}
 echo "total files to process with pattern $pattern from $data_dir: $fLen"
 wait_job2=`bsub -J "comet[1-$fLen]%30" < ./comet_array.sh | sed 's/[^0-9]*//g'`
 
-
 #tandem2pepxml
 wait_job3=`bsub -J "tandem2pepxml[1-$fLen]%30" -w "$to_wait" < ./tandem2pepxml.sh | sed 's/[^0-9]*//g'`
 
